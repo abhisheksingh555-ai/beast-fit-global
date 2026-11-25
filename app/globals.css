@@ -1,26 +1,383 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
+
 @import "tailwindcss";
 
+/* ================================
+   ROOT DESIGN TOKENS
+================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  /* Brand Colors */
+  --background: #FAEDDF;
+  --foreground: #2C1D13;
+
+  --cream: #FAEDDF;
+  --sand: #F2E3D2;
+  --espresso: #2C1D13;
+  --walnut: #4A2E1B;
+  --amber: #E6A145;
+  --warm-border: #D9C2AE;
+  --warm-white: #FFF7EB;
+
+  /* Typography */
+  --font-playfair: "Playfair Display", serif;
+  --font-caveat: "Caveat", cursive;
+  --font-inter: "Inter", sans-serif;
+
+  /* Layout */
+  --container-width: 1440px;
+  --page-gutter: 40px;
+  --home-gutter: 20px;
+
+  /* Radius */
+  --card-radius: 16px;
+  --button-radius: 100px;
+
+  /* Texture fallback */
+  --walnut-texture: none;
 }
+
+/* ================================
+   TAILWIND THEME
+================================ */
 
 @theme inline {
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-cream: var(--cream);
+  --color-sand: var(--sand);
+  --color-espresso: var(--espresso);
+  --color-walnut: var(--walnut);
+  --color-amber: var(--amber);
+  --color-warm-border: var(--warm-border);
+  --color-warm-white: var(--warm-white);
+
+  /* Fonts */
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-playfair);
+  --font-script: var(--font-caveat);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ================================
+   GLOBAL RESET
+================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter);
+  font-size: 15px;
+  line-height: 1.53;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ================================
+   TYPOGRAPHY
+================================ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-playfair);
+  color: var(--espresso);
+  font-weight: 700;
+}
+
+.hero-title {
+  font-family: var(--font-playfair);
+  font-size: 60px;
+  line-height: 0.95;
+  font-weight: 700;
+}
+
+.page-title {
+  font-size: 57px;
+  line-height: 1.09;
+}
+
+.section-title {
+  font-size: 37px;
+  line-height: 1.16;
+}
+
+.brand-wordmark {
+  font-family: var(--font-playfair);
+  font-size: 44px;
+  line-height: 1.05;
+  font-weight: 700;
+}
+
+.script-welcome {
+  font-family: var(--font-caveat);
+  font-size: 45px;
+  line-height: 1.07;
+  font-weight: 700;
+}
+
+.script-eyebrow {
+  font-family: var(--font-caveat);
+  font-size: 31px;
+  line-height: 1.16;
+  font-weight: 700;
+}
+
+.body-text {
+  font-family: var(--font-inter);
+  font-size: 15px;
+  line-height: 23px;
+}
+
+.ui-label {
+  font-family: var(--font-inter);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+}
+
+.card-title {
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 600;
+}
+
+.card-caption {
+  font-size: 10.5px;
+  line-height: 14px;
+}
+
+.coach-quote {
+  font-family: var(--font-playfair);
+  font-size: 14.5px;
+  line-height: 19px;
+  font-style: italic;
+}
+
+/* ================================
+   REUSABLE LAYOUT
+================================ */
+
+.container-main {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+.container-home {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--home-gutter);
+}
+
+.section-gap {
+  margin-block: 80px;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 56px;
+  padding: 0 26px;
+
+  border: 1px solid transparent;
+  border-radius: var(--button-radius);
+
+  background: var(--walnut);
+  color: var(--warm-white);
+
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: var(--espresso);
+  box-shadow: 0 8px 20px rgb(44 29 19 / 15%);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 56px;
+  padding: 0 26px;
+
+  border: 1px solid var(--walnut);
+  border-radius: var(--button-radius);
+
+  background: var(--warm-white);
+  color: var(--walnut);
+
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--sand);
+}
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.btn-primary:disabled,
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ================================
+   CARDS & INPUTS
+================================ */
+
+.card {
+  background: var(--warm-white);
+  border: 1px solid var(--warm-border);
+  border-radius: var(--card-radius);
+}
+
+.input-field {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
+
+  border: 1px solid var(--warm-border);
+  border-radius: 10px;
+
+  background: var(--warm-white);
+  color: var(--espresso);
+
+  font-family: var(--font-inter);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.input-field:focus {
+  border-color: var(--walnut);
+}
+
+.input-field::placeholder {
+  color: #927D6D;
+}
+
+/* ================================
+   WOOD TEXTURE SURFACES
+================================ */
+
+.walnut-surface {
+  background-color: var(--walnut);
+  background-image:
+    linear-gradient(
+      rgb(74 46 27 / 75%),
+      rgb(74 46 27 / 85%)
+    ),
+    var(--walnut-texture);
+  background-size: cover;
+  background-position: center;
+  color: var(--warm-white);
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+
+@media (max-width: 768px) {
+  :root {
+    --page-gutter: 20px;
+    --home-gutter: 20px;
+  }
+
+  .hero-title {
+    font-size: 40px;
+    line-height: 43px;
+  }
+
+  .page-title {
+    font-size: 39px;
+    line-height: 44px;
+  }
+
+  .section-title {
+    font-size: 29px;
+    line-height: 35px;
+  }
+
+  .brand-wordmark {
+    font-size: 30px;
+  }
+
+  .script-welcome {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .card-title {
+    font-size: 12px;
+  }
+
+  .card-caption {
+    font-size: 8px;
+    line-height: 11px;
+  }
+
+  .section-gap {
+    margin-block: 48px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    min-height: 48px;
+    padding-inline: 22px;
+  }
+}
+
+/* ================================
+   ACCESSIBILITY
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
