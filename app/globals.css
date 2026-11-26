@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap");
 
 @import "tailwindcss";
 
@@ -11,16 +10,16 @@
   color-scheme: light;
 
   /* Brand Colors */
-  --background: #FAEDDF;
-  --foreground: #2C1D13;
+  --background: #faeddf;
+  --foreground: #2c1d13;
 
-  --cream: #FAEDDF;
-  --sand: #F2E3D2;
-  --espresso: #2C1D13;
-  --walnut: #4A2E1B;
-  --amber: #E6A145;
-  --warm-border: #D9C2AE;
-  --warm-white: #FFF7EB;
+  --cream: #faeddf;
+  --sand: #f2e3d2;
+  --espresso: #2c1d13;
+  --walnut: #4a2e1b;
+  --amber: #e6a145;
+  --warm-border: #d9c2ae;
+  --warm-white: #fff7eb;
 
   /* Typography */
   --font-playfair: "Playfair Display", serif;
@@ -294,7 +293,7 @@ h6 {
 }
 
 .input-field::placeholder {
-  color: #927D6D;
+  color: #927d6d;
 }
 
 /* ================================
@@ -304,10 +303,7 @@ h6 {
 .walnut-surface {
   background-color: var(--walnut);
   background-image:
-    linear-gradient(
-      rgb(74 46 27 / 75%),
-      rgb(74 46 27 / 85%)
-    ),
+    linear-gradient(rgb(74 46 27 / 75%), rgb(74 46 27 / 85%)),
     var(--walnut-texture);
   background-size: cover;
   background-position: center;
