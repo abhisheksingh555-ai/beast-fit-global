@@ -30,12 +30,12 @@ export default function Navbar() {
   return (
     <header className="w-full">
       {/* ───────── Top info bar ───────── */}
-      <div className="hidden h-10.5 w-full bg-[#6F3915] text-white lg:block">
+      <header className="hidden h-10.5 w-full bg-[#6F3915] text-white lg:block">
         <Topbar />
-      </div>
+      </header>
 
       {/* ───────── Main navbar ───────── */}
-      <div className="w-full border-b border-[#D7C2B1] bg-[linear-gradient(180deg,#FCEBDC_0%,#F8E8D8_100%)]">
+      <nav className="w-full border-b border-[#D7C2B1] bg-[linear-gradient(180deg,#FCEBDC_0%,#F8E8D8_100%)]">
         <nav className="relative mx-auto flex h-18.75 max-w-360 items-center justify-between px-5 lg:px-10">
 
           {/* Logo */}
@@ -119,7 +119,7 @@ export default function Navbar() {
             </Link>
           </div>
         </nav>
-      </div>
+      </nav>
     </header>
   );
 }
