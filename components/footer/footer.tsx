@@ -55,80 +55,109 @@ type FooterProps = {
 };
 
 export default function Footer({ socialLinks = {} }: FooterProps) {
+  const activeSocials = socialPlatforms.flatMap(({ key, label, icon }) => {
+    const href = socialLinks[key];
+    return href ? [{ key, label, icon, href }] : [];
+  });
+
   return (
-    <footer className="relative isolate overflow-hidden bg-[#71390F] text-[#FFF6EA]">
+    <footer className="relative isolate overflow-hidden bg-[#48230E] text-[#FFF6EA]">
       <Image
-        src="/images/footer-wood.webp"
+        src="/footer.png"
         alt=""
         fill
         sizes="100vw"
         className="-z-20 object-cover object-center"
       />
+
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[#321607]/35"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[#241005]/75"
       />
 
-      <div className="mx-auto max-w-360 px-5 py-6 sm:px-8 lg:px-11 lg:py-7">
-        <div className="grid grid-cols-2 gap-x-5 gap-y-6 lg:grid-cols-[1.2fr_1fr_1fr_.65fr]">
-          <div className="col-span-2 lg:col-span-1">
+      <div className="mx-auto max-w-360 px-4 py-8 sm:px-8 lg:px-11 lg:py-11">
+        <div className="grid grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] gap-x-4 gap-y-6 sm:gap-x-8 lg:grid-cols-[1.15fr_0.8fr_1.3fr_0.85fr]">
+          <div className="col-span-2 min-w-0 lg:col-span-1">
             <Link
               href="/"
-              className="inline-block font-serif text-3xl font-bold tracking-tight"
+              className="inline-block rounded-sm font-serif text-3xl font-bold leading-tight tracking-tight text-white! focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
               Fitsonaa
             </Link>
 
-            <p className="mt-1 text-xs font-semibold">Move • Heal • Grow</p>
-            <p className="mt-2 max-w-52 text-xs leading-relaxed text-[#F9E6D2]">
+            <p className="mt-1 text-sm font-semibold text-[#FFE1B5]!">
+              Move • Heal • Grow
+            </p>
+            <p className="mt-2 max-w-[28ch] text-sm leading-relaxed text-[#FFF0DE]!">
               Empowering you to live your healthiest life.
             </p>
 
-            <div className="mt-2 flex gap-1">
-              {socialPlatforms.map(({ key, label, icon }) => {
-                const href = socialLinks[key];
-
-                if (!href) return null;
-
-                return (
-                  <a
-                    key={key}
-                    href={href}
-                    aria-label={`Fitsonaa on ${label}`}
-                    className="inline-flex size-7 items-center justify-center rounded hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFF6EA]"
-                  >
-                    <HugeiconsIcon icon={icon} size={14} aria-hidden="true" />
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-
-          {footerGroups.map(({ title, links }) => (
-            <nav key={title} aria-label={title}>
-              <h2 className="mb-2 text-sm font-semibold text-[#FFDEA8]">
-                {title}
-              </h2>
-
-              <ul className="space-y-1.5">
-                {links.map(([label, href]) => (
-                  <li key={label}>
-                    <Link
+            {activeSocials.length > 0 && (
+              <ul
+                role="list"
+                aria-label="Social media"
+                className="mt-3 flex flex-wrap gap-2"
+              >
+                {activeSocials.map(({ key, label, icon, href }) => (
+                  <li key={key}>
+                    <a
                       href={href}
-                      className="inline-block text-xs leading-relaxed text-[#FFF0DE] hover:text-white hover:underline focus-visible:underline"
+                      aria-label={`Fitsonaa on ${label}`}
+                      className="inline-flex size-11 items-center justify-center rounded-full border border-white/35 text-white! hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                     >
-                      {label}
-                    </Link>
+                      <HugeiconsIcon
+                        icon={icon}
+                        size={17}
+                        aria-hidden="true"
+                      />
+                    </a>
                   </li>
                 ))}
               </ul>
-            </nav>
-          ))}
+            )}
+          </div>
+
+          {footerGroups.map(({ title, links }) => {
+            const isLegal = title === "Legal";
+
+            return (
+              <nav
+                key={title}
+                aria-label={title}
+                className={isLegal ? "col-span-2 min-w-0 lg:col-span-1" : "min-w-0"}
+              >
+                <h2 className="mb-2 text-base font-bold leading-snug text-white!">
+                  {title}
+                </h2>
+
+                <ul
+                  role="list"
+                  className={
+                    isLegal
+                      ? "flex flex-wrap gap-x-5 lg:flex-col"
+                      : "grid"
+                  }
+                >
+                  {links.map(([label, href]) => (
+                    <li key={href} className="min-w-0">
+                      <Link
+                        href={href}
+                        className="inline-flex min-h-8 max-w-full items-center rounded-sm py-1.5 text-sm leading-snug wrap-break-word text-[#FFF0DE]! underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            );
+          })}
         </div>
 
-        <div className="mt-6 border-t border-[#FCE3C2]/35 pt-4 text-[11px] text-[#F9E6D2]">
-          © 2026 Fitsonaa. All rights reserved. Designed with ♡.
-        </div>
+        <p className="mt-6 border-t border-white/30 pt-4 text-center text-xs leading-relaxed text-[#FFF0DE]! lg:mt-8 lg:text-left">
+          © 2026 Fitsonaa. All rights reserved. Designed with{" "}
+          <span aria-label="love">♡</span>.
+        </p>
       </div>
     </footer>
   );

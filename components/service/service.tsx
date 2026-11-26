@@ -25,27 +25,34 @@ const services = [
 
 export default function SevenService() {
   return (
-    <section aria-label="Fitness and wellness services" className="bg-[#F2E3D2] px-4 md:px-10">
+    <section
+      aria-label="Fitness and wellness services"
+      className="bg-[#F2E3D2] px-3 py-3 sm:px-6 lg:px-10 lg:py-5"
+    >
       <div
-        role="group"
-        aria-label="Explore all seven services"
+        role="region"
+        aria-label="Scrollable list of services"
         tabIndex={0}
-        className="mx-auto max-w-360 overflow-x-auto rounded-2xl border border-[#E4CEB8] bg-[#F8EBDD] shadow-[0_3px_8px_rgba(74,42,23,0.12)] focus-visible:outline-2 focus-visible:outline-[#5B3825]"
+        className="mx-auto max-w-360 overflow-x-auto rounded-2xl border border-[#E4CEB8] bg-[#F8EBDD] shadow-[0_3px_8px_rgba(74,42,23,0.12)] scrollbar-none [&::-webkit-scrollbar]:hidden focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#5B3825] lg:rounded-[20px]"
       >
-        <ul className="flex w-max min-w-full divide-x divide-[#E4CEB8] py-2.5">
+        <ul
+          role="list"
+          className="flex min-h-13 items-stretch divide-x divide-[#E4CEB8] py-2 sm:min-h-15 lg:grid lg:min-h-18 lg:grid-cols-7 lg:py-3"
+        >
           {services.map(({ icon, title, subtitle }) => (
             <li
               key={title}
-              className="flex min-h-8 flex-1 items-center justify-center gap-2.5 whitespace-nowrap px-4 text-[#4A2C1B] lg:px-6"
+              className="flex min-h-9 shrink-0 basis-[40%] items-center justify-center gap-2 px-2 text-[#4A2C1B] sm:basis-[25%] lg:min-h-12 lg:gap-2.5 lg:px-2 xl:px-4"
             >
               <HugeiconsIcon
                 icon={icon}
-                size={23}
+                size={20}
                 strokeWidth={1.8}
-                className="shrink-0"
+                className="shrink-0 lg:size-6"
                 aria-hidden="true"
               />
-              <span className="text-[11px] font-semibold leading-tight">
+
+              <span className="text-[11px] font-semibold leading-tight lg:text-xs">
                 <span className="block">{title}</span>
                 <span className="block">{subtitle}</span>
               </span>
